@@ -1,7 +1,12 @@
 body{
-  background-color: #232A5D;
+  background-color: #262542;
 }
 
 .span{
   color: white;
+}
+
+#done {
+  text-decoration-line: line-through;
+  text-decoration-color: #262542;
 }
