@@ -1,12 +1,12 @@
-body{
+body {
   background-color: #262542;
 }
 
-.span{
+.span {
   color: white;
 }
 
 #done {
-  text-decoration-line: line-through;
+  text-decoration: line-through;
   text-decoration-color: #262542;
 }

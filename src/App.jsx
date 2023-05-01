@@ -16,6 +16,7 @@ export default function App() {
     const addItem = {
       id: Math.floor(Math.random() * 100000) + 1,
       value: item,
+      status: false,
     };
     setItemList((currentList) => [...itemList, addItem]);
     setItem("");
@@ -24,6 +25,14 @@ export default function App() {
   const handleDeleteItem = (id) => {
     const currentItems = itemList.filter((item) => item.id !== id);
     setItemList([...currentItems]);
+  };
+
+  const handleDoneItem = (id, isDone) => {
+    const currentItems = itemList.map((item) => {
+      return item.id === id ? { ...item, status: isDone } : item;
+    });
+
+    setItemList(currentItems);
   };
 
   return (
@@ -61,7 +70,7 @@ export default function App() {
               className="btn btn-secondary btn-md"
               onClick={handleAddNewItem}
             >
-              Save
+              save
             </button>
           </div>
 
@@ -80,9 +89,25 @@ export default function App() {
               <tbody>
                 {itemList.map((row) => (
                   <tr key={row.id}>
-                    <td></td>
-                    <td className="text-light fw-bold" id="done">
-                      {row.value}
+                    <td>
+                      <div>
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          value="dd"
+                          onChange={(e) => {
+                            handleDoneItem(row.id, e.target.checked);
+                          }}
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <h4
+                        className="text-light fw-bold"
+                        id={row.status ? "done" : ""}
+                      >
+                        {row.value}
+                      </h4>
                     </td>
                     <td>
                       <span
@@ -90,7 +115,6 @@ export default function App() {
                         onClick={() => {
                           handleDeleteItem(row.id);
                         }}
-                        n
                       >
                         delete
                       </span>
